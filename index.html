@@ -157,8 +157,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
     </div>
 
     <div class="cf-guide">
-      신청 버튼을 누르면 새 탭에 구글 폼이 자동으로 열립니다.<br>
-      내용을 확인하신 후 구글 폼 하단의 <b>제출</b> 버튼을 눌러주세요.
+      신청 버튼을 누르면 바로 접수됩니다.<br>영업일 기준 1일 이내 연락드립니다.
     </div>
     <button class="cf-submit" onclick="submitForm()">무료 견적 신청하기</button>
     <p class="cf-note">접수 후 영업일 기준 1일 이내 연락드립니다.</p>
@@ -197,7 +196,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
       </svg>
     </div>
     <div class="cf-success-title">견적 신청이 완료됐습니다</div>
-    <div class="cf-success-desc">새 탭의 구글 폼에서<br>제출 버튼을 눌러주세요.</div>
+    <div class="cf-success-desc">접수가 완료됐습니다.<br>영업일 기준 1일 이내 연락드리겠습니다.</div>
   </div>
 </div>
 
@@ -269,7 +268,7 @@ function calcPrice() {
 }
 
 function toggleChip(el, group) {
-const isSingle = ['type','time','special'].includes(group);
+  const isSingle = ['type','time'].includes(group);
   if (isSingle) {
     document.querySelectorAll('#' + group + '-group .cf-chip').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
@@ -287,6 +286,8 @@ function togglePrivacy() {
   arrow.classList.toggle('open', !isOpen);
 }
 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7RbwG87KkxTRL7U6wIw0KLxWcE6qjEaFghMk9ii3vPX9K131fzKpgfMP0j4YTpqdncw/exec";
+
 function submitForm() {
   const name   = document.getElementById('name').value.trim();
   const phone  = document.getElementById('phone').value.trim();
@@ -303,26 +304,30 @@ function submitForm() {
   const memo     = document.getElementById('memo').value.trim();
   const dateVal  = document.getElementById('date').value;
 
-  const params = new URLSearchParams();
-  params.set(ENTRY.name,   name);
-  params.set(ENTRY.phone,  phone);
-  params.set(ENTRY.region, region);
-  params.set(ENTRY.type,   type.textContent);
-  params.set(ENTRY.count,  String(count));
-  specials.forEach(s => params.append(ENTRY.special, s));
-  if (!specials.length) params.set(ENTRY.special, '해당없음');
-  if (time) params.set(ENTRY.time, time);
-  if (memo) params.set(ENTRY.memo, memo);
-  if (dateVal) {
-    const p = dateVal.split('-');
-    params.set(ENTRY.date_y, p[0]);
-    params.set(ENTRY.date_m, p[1]);
-    params.set(ENTRY.date_d, p[2]);
-  }
+  const btn = document.querySelector('.cf-submit');
+  btn.textContent = '신청 중...';
+  btn.disabled = true;
 
-  window.open(VIEWFORM + '?' + params.toString(), '_blank');
-  document.getElementById('form-wrap').style.display = 'none';
-  document.getElementById('success-wrap').style.display = 'block';
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name, phone, region,
+      type: type.textContent,
+      count: String(count),
+      special: specials.length ? specials.join(', ') : '해당없음',
+      time, memo,
+      date: dateVal || '협의'
+    })
+  }).then(() => {
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-wrap').style.display = 'block';
+  }).catch(() => {
+    alert('오류가 발생했습니다. 다시 시도해주세요.');
+    btn.textContent = '무료 견적 신청하기';
+    btn.disabled = false;
+  });
 }
 </script>
 </body>
