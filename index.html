@@ -268,7 +268,8 @@ function calcPrice() {
 }
 
 function toggleChip(el, group) {
-  const isSingle = ['type','time'].includes(group);
+const isSingle = ['type','time','special'].includes(group);
+
   if (isSingle) {
     document.querySelectorAll('#' + group + '-group .cf-chip').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
