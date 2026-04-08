@@ -83,7 +83,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
           <div class="cf-chip" onclick="toggleChip(this,'type')">2in1</div>
           <div class="cf-chip" onclick="toggleChip(this,'type')">천정형 가정용</div>
           <div class="cf-chip" onclick="toggleChip(this,'type')">천정형 사무용</div>
-          <div class="cf-chip" onclick="toggleChip(this,'type')">위니아 천정형</div>
         </div>
       </div>
       <div class="cf-divider"></div>
@@ -109,6 +108,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
       </div>
     </div>
 
+    <div class="cf-price-box" id="price-box">
+      <div class="cf-price-label">예상 견적 금액</div>
+      <div class="cf-price-amount" id="price-amount">0원</div>
+      <div class="cf-price-detail" id="price-detail"></div>
+    </div>
     <div class="cf-card">
       <div class="cf-section-title">방문 정보</div>
       <div class="cf-field">
@@ -152,11 +156,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
       </div>
     </div>
 
-    <div class="cf-price-box" id="price-box">
-      <div class="cf-price-label">예상 견적 금액</div>
-      <div class="cf-price-amount" id="price-amount">0원</div>
-      <div class="cf-price-detail" id="price-detail"></div>
-    </div>
     <div class="cf-guide">
       신청 버튼을 누르면 새 탭에 구글 폼이 자동으로 열립니다.<br>
       내용을 확인하신 후 구글 폼 하단의 <b>제출</b> 버튼을 눌러주세요.
@@ -233,27 +232,36 @@ const PRICES = {
   '2in1':         { one: 190000, multi: 190000 },
   '천정형 가정용': { one: 110000, multi: 90000 },
   '천정형 사무용': { one: 150000, multi: 150000 },
-  '위니아 천정형': { one: 120000, multi: 110000 },
 };
+const SPECIAL_FIXED = ['미켈란젤로', '갤러리'];
+const SPECIAL_FIXED_PRICE = 250000;
 const SPECIAL_ADD = 20000;
 
 function calcPrice() {
-  const typeEl  = document.querySelector('#type-group .cf-chip.active');
+  const typeEl = document.querySelector('#type-group .cf-chip.active');
   if (!typeEl) { document.getElementById('price-box').style.display='none'; return; }
 
   const typeName = typeEl.textContent;
-  const p = PRICES[typeName];
-  if (!p) return;
+  const activeSpecials = [...document.querySelectorAll('#special-group .cf-chip.active')]
+    .map(c => c.textContent).filter(t => t !== '해당없음');
 
-  const unitPrice = count >= 2 ? p.multi : p.one;
-  const hasSpecial = [...document.querySelectorAll('#special-group .cf-chip.active')]
-    .some(c => c.textContent !== '해당없음');
-  const specialAdd = hasSpecial ? SPECIAL_ADD * count : 0;
-  const total = unitPrice * count + specialAdd;
-
+  const hasFixed = activeSpecials.some(s => SPECIAL_FIXED.includes(s));
   const fmt = n => n.toLocaleString('ko-KR') + '원';
-  let detail = typeName + ' ' + count + '대 × ' + fmt(unitPrice);
-  if (specialAdd > 0) detail += ' + 특수모델 추가금 ' + fmt(specialAdd);
+  let total, detail;
+
+  if (hasFixed) {
+    total = SPECIAL_FIXED_PRICE * count;
+    detail = activeSpecials.filter(s => SPECIAL_FIXED.includes(s)).join('/') + ' ' + count + '대 × ' + fmt(SPECIAL_FIXED_PRICE);
+  } else {
+    const p = PRICES[typeName];
+    if (!p) return;
+    const unitPrice = count >= 2 ? p.multi : p.one;
+    const otherSpecials = activeSpecials.filter(s => !SPECIAL_FIXED.includes(s));
+    const specialAdd = otherSpecials.length > 0 ? SPECIAL_ADD * count : 0;
+    total = unitPrice * count + specialAdd;
+    detail = typeName + ' ' + count + '대 × ' + fmt(unitPrice);
+    if (specialAdd > 0) detail += ' + 특수모델 추가금 ' + fmt(specialAdd);
+  }
 
   document.getElementById('price-amount').textContent = fmt(total);
   document.getElementById('price-detail').textContent = detail;
