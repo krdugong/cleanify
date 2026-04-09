@@ -6,7 +6,7 @@
 <title>클리니파이 | 에어컨 청소를 보다 쉽게</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; padding-bottom: 80px; }
 
 .header { text-align: center; padding: 3rem 1rem 2rem; }
 .logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -53,6 +53,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 .cta-bottom { display: block; width: 100%; padding: 16px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; cursor: pointer; }
 .cta-bottom:hover { background: #0F6E56; }
 .cta-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 8px; }
+.fixed-cta { position: fixed; bottom: 0; left: 0; right: 0; padding: 12px 1rem; background: transparent; z-index: 100; }
+.fixed-cta-inner { max-width: 480px; margin: 0 auto; }
+.fixed-cta a { display: block; width: 100%; padding: 16px; background: #1D9E75; color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; box-shadow: 0 4px 20px rgba(29,158,117,0.35); }
+.fixed-cta a:hover { background: #0F6E56; }
 
 .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; }
 .lightbox.open { display: flex; }
@@ -158,9 +162,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 
 </div>
 
-<div class="cta-bottom-wrap">
-  <a href="form.html" class="cta-bottom">무료 견적 신청하기</a>
-  <div class="cta-note">수도권 1시간 거리 출장 가능</div>
+<div style="height:1rem;"></div>
+
+<div class="fixed-cta">
+  <div class="fixed-cta-inner">
+    <a href="form.html">무료 견적 신청하기</a>
+  </div>
 </div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
