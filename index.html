@@ -80,7 +80,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
     <div style="font-size:15px;font-weight:600;color:#111;margin-bottom:6px;">초대 코드를 입력해주세요</div>
     <div style="font-size:13px;color:#888;margin-bottom:1.5rem;line-height:1.6;">클리니파이 특별 초대 고객만<br>접근 가능한 페이지입니다.</div>
     <div style="display:flex;gap:8px;margin-bottom:8px;">
-      <input id="gate-input" type="text" placeholder="초대 코드 입력" style="flex:1;padding:12px;font-size:15px;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;border:1px solid #e0e0dc;border-radius:8px;outline:none;text-align:center;letter-spacing:2px;background:#f9f9f7;color:#111;">
+      <input id="gate-input" type="text" placeholder="초대 코드 입력" style="flex:1;padding:12px;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;border:1px solid #e0e0dc;border-radius:8px;outline:none;text-align:center;letter-spacing:2px;background:#f9f9f7;color:#111;">
       <button onclick="checkGate()" style="padding:12px 18px;background:#1D9E75;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;cursor:pointer;">확인</button>
     </div>
     <div id="gate-msg" style="font-size:12px;color:#D85A30;min-height:16px;"></div>
@@ -155,10 +155,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
   <div class="card">
     <div class="section-label">실제 시공 사례</div>
     <div class="photo-grid">
-      <div class="photo-item"><img src="cleanify-photo-008.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
-      <div class="photo-item"><img src="cleanify-photo-009.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
-      <div class="photo-item"><img src="cleanify-photo-010.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
-      <div class="photo-item"><img src="cleanify-photo-005.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify001.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify002.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify003.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify004.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify005.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify006.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
     </div>
   </div>
 
@@ -197,11 +199,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 
 <script>
 
-const GATE_CODE = '20262026';
+const GATE_CODES = ['20262026', '2026'];
 
 function checkGate() {
   const val = document.getElementById('gate-input').value.trim();
-  if (val === GATE_CODE) {
+  if (GATE_CODES.includes(val)) {
     document.getElementById('gate-wrap').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
   } else {
