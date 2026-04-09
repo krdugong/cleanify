@@ -66,30 +66,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 </head>
 <body>
 
-<div id="gate-wrap" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;">
-  <div style="max-width:360px;width:100%;text-align:center;">
-    <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:1.5rem;">
-      <div style="width:36px;height:36px;background:#1D9E75;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
-          <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
-        </svg>
-      </div>
-      <span style="font-size:22px;font-weight:700;color:#111;letter-spacing:-0.5px;">cleanify</span>
-    </div>
-    <div style="font-size:15px;font-weight:600;color:#111;margin-bottom:6px;">초대 코드를 입력해주세요</div>
-    <div style="font-size:13px;color:#888;margin-bottom:1.5rem;line-height:1.6;">클리니파이 특별 초대 고객만<br>접근 가능한 페이지입니다.</div>
-    <div style="display:flex;gap:8px;margin-bottom:8px;">
-      <input id="gate-input" type="text" placeholder="초대 코드 입력" style="flex:1;padding:12px;font-size:15px;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;border:1px solid #e0e0dc;border-radius:8px;outline:none;text-align:center;letter-spacing:2px;background:#f9f9f7;color:#111;">
-      <button onclick="checkGate()" style="padding:12px 18px;background:#1D9E75;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;cursor:pointer;">확인</button>
-    </div>
-    <div id="gate-msg" style="font-size:12px;color:#D85A30;min-height:16px;"></div>
-  </div>
-</div>
-
-<div id="gate-input" style="display:none;"></div>
-
-<div class="cf-wrap" style="display:none;" id="main-form">
+<div class="cf-wrap">
   <div class="cf-logo">
     <div class="cf-logo-mark">
       <div class="cf-logo-icon">
@@ -238,25 +215,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
     <div class="cf-success-desc">접수가 완료됐습니다.<br>영업일 기준 1일 이내 연락드리겠습니다.</div>
   </div>
 </div>
-</div>
 
 <script>
-const GATE_CODE = '20262026';
-
-function checkGate() {
-  const val = document.getElementById('gate-input').value.trim();
-  if (val === GATE_CODE) {
-    document.getElementById('gate-wrap').style.display = 'none';
-    document.getElementById('main-form').style.display = 'block';
-  } else {
-    document.getElementById('gate-msg').textContent = '올바른 초대 코드가 아닙니다.';
-  }
-}
-
-document.getElementById('gate-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkGate();
-});
-
 
 const VIEWFORM = "https://docs.google.com/forms/d/e/1FAIpQLSdo6rwQqerzUBeXjVYEXp9rMFGWYXguOIEcJPS99MpCXfAARg/viewform";
 const ENTRY = {
