@@ -46,6 +46,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 .cf-price-label { font-size:12px; color:#0F6E56; margin-bottom:4px; }
 .cf-price-amount { font-size:24px; font-weight:700; color:#0F6E56; letter-spacing:-0.5px; }
 .cf-price-detail { font-size:12px; color:#5F5E5A; margin-top:6px; line-height:1.6; }
+.cf-promo { margin-top: 0.75rem; }
+.cf-promo-row { display: flex; gap: 8px; }
+.cf-promo-input { flex: 1; padding: 10px 12px; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; color: #111; background: #f9f9f7; border: 1px solid #e0e0dc; border-radius: 8px; outline: none; transition: border-color 0.15s; }
+.cf-promo-input:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
+.cf-promo-btn { padding: 10px 16px; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; cursor: pointer; white-space: nowrap; }
+.cf-promo-msg { font-size: 12px; margin-top: 6px; }
+.cf-promo-ok { color: #1D9E75; }
+.cf-promo-err { color: #D85A30; }
 .cf-privacy { margin-top: 1.5rem; border: 1px solid #e8e8e6; border-radius: 8px; overflow: hidden; }
 .cf-privacy-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; cursor: pointer; background: #fff; font-size: 13px; color: #666; user-select: none; }
 .cf-privacy-header:hover { background: #f9f9f7; }
@@ -57,7 +65,31 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 </style>
 </head>
 <body>
-<div class="cf-wrap">
+
+<div id="gate-wrap" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;">
+  <div style="max-width:360px;width:100%;text-align:center;">
+    <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:1.5rem;">
+      <div style="width:36px;height:36px;background:#1D9E75;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
+          <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
+        </svg>
+      </div>
+      <span style="font-size:22px;font-weight:700;color:#111;letter-spacing:-0.5px;">cleanify</span>
+    </div>
+    <div style="font-size:15px;font-weight:600;color:#111;margin-bottom:6px;">초대 코드를 입력해주세요</div>
+    <div style="font-size:13px;color:#888;margin-bottom:1.5rem;line-height:1.6;">클리니파이 특별 초대 고객만<br>접근 가능한 페이지입니다.</div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;">
+      <input id="gate-input" type="text" placeholder="초대 코드 입력" style="flex:1;padding:12px;font-size:15px;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;border:1px solid #e0e0dc;border-radius:8px;outline:none;text-align:center;letter-spacing:2px;background:#f9f9f7;color:#111;">
+      <button onclick="checkGate()" style="padding:12px 18px;background:#1D9E75;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;cursor:pointer;">확인</button>
+    </div>
+    <div id="gate-msg" style="font-size:12px;color:#D85A30;min-height:16px;"></div>
+  </div>
+</div>
+
+<div id="gate-input" style="display:none;"></div>
+
+<div class="cf-wrap" style="display:none;" id="main-form">
   <div class="cf-logo">
     <div class="cf-logo-mark">
       <div class="cf-logo-icon">
@@ -112,6 +144,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
       <div class="cf-price-label">예상 견적 금액</div>
       <div class="cf-price-amount" id="price-amount">0원</div>
       <div class="cf-price-detail" id="price-detail"></div>
+    </div>
+    <div class="cf-promo" id="promo-wrap" style="display:none;">
+      <div class="cf-promo-row">
+        <input class="cf-promo-input" type="text" id="promo-input" placeholder="프로모션 코드 입력">
+        <button class="cf-promo-btn" onclick="applyPromo()">적용</button>
+      </div>
+      <div class="cf-promo-msg" id="promo-msg"></div>
     </div>
     <div class="cf-card">
       <div class="cf-section-title">방문 정보</div>
@@ -199,8 +238,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
     <div class="cf-success-desc">접수가 완료됐습니다.<br>영업일 기준 1일 이내 연락드리겠습니다.</div>
   </div>
 </div>
+</div>
 
 <script>
+const GATE_CODE = '20262026';
+
+function checkGate() {
+  const val = document.getElementById('gate-input').value.trim();
+  if (val === GATE_CODE) {
+    document.getElementById('gate-wrap').style.display = 'none';
+    document.getElementById('main-form').style.display = 'block';
+  } else {
+    document.getElementById('gate-msg').textContent = '올바른 초대 코드가 아닙니다.';
+  }
+}
+
+document.getElementById('gate-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkGate();
+});
+
+
 const VIEWFORM = "https://docs.google.com/forms/d/e/1FAIpQLSdo6rwQqerzUBeXjVYEXp9rMFGWYXguOIEcJPS99MpCXfAARg/viewform";
 const ENTRY = {
   name:    "entry.823388570",
@@ -224,6 +281,38 @@ function changeCount(delta) {
   calcPrice();
 }
 
+
+
+const PROMO_CODE = '2026';
+const PROMO_DISCOUNT = 10000;
+let promoApplied = false;
+
+function applyPromo() {
+  const input = document.getElementById('promo-input').value.trim();
+  const msg = document.getElementById('promo-msg');
+  const typeEl = document.querySelector('#type-group .cf-chip.active');
+
+  if (input === PROMO_CODE) {
+    const activeSpecials = [...document.querySelectorAll('#special-group .cf-chip.active')]
+      .map(c => c.textContent).filter(t => t !== '해당없음');
+    const isFixed = activeSpecials.some(s => SPECIAL_FIXED.includes(s));
+    if (isFixed) {
+      msg.className = 'cf-promo-msg cf-promo-err';
+      msg.textContent = '특별 제품은 프로모션 코드 적용이 불가합니다.';
+      promoApplied = false;
+    } else {
+      promoApplied = true;
+      msg.className = 'cf-promo-msg cf-promo-ok';
+      msg.textContent = '코드가 적용됐습니다. 대당 10,000원 할인!';
+      calcPrice();
+    }
+  } else {
+    promoApplied = false;
+    msg.className = 'cf-promo-msg cf-promo-err';
+    msg.textContent = '유효하지 않은 코드입니다.';
+    calcPrice();
+  }
+}
 
 const PRICES = {
   '벽걸이':       { one: 90000, multi: 80000 },
@@ -262,9 +351,16 @@ function calcPrice() {
     if (specialAdd > 0) detail += ' + 특수모델 추가금 ' + fmt(specialAdd);
   }
 
+  if (promoApplied && !hasFixed) {
+    const discount = PROMO_DISCOUNT * count;
+    total -= discount;
+    detail += ' - 프로모션 할인 ' + fmt(discount);
+  }
+
   document.getElementById('price-amount').textContent = fmt(total);
   document.getElementById('price-detail').textContent = detail;
   document.getElementById('price-box').style.display = 'block';
+  document.getElementById('promo-wrap').style.display = 'block';
 }
 
 function toggleChip(el, group) {
@@ -319,6 +415,8 @@ function submitForm() {
       special: specials.length ? specials.join(', ') : '해당없음',
       time, memo,
       date: dateVal || '협의',
+      promoCode: promoApplied ? PROMO_CODE : '',
+      promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
       price: document.getElementById('price-amount').textContent,
       priceDetail: document.getElementById('price-detail').textContent
     })
