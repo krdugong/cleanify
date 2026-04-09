@@ -3,332 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>클리니파이 | 에어컨 세척 무료 견적 신청</title>
+<title>클리니파이 | 에어컨 청소를 보다 쉽게</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; min-height: 100vh; padding: 2rem 1rem; }
-.cf-wrap { max-width: 480px; margin: 0 auto; }
-.cf-logo { text-align: center; margin-bottom: 2rem; }
-.cf-logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.cf-logo-icon { width: 36px; height: 36px; background: #1D9E75; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-.cf-logo-text { font-size: 22px; font-weight: 600; color: #111; letter-spacing: -0.5px; }
-.cf-logo-slogan { font-size: 13px; color: #888; margin-top: 2px; }
-.cf-logo-sub { font-size: 12px; color: #aaa; margin-top: 6px; }
-.cf-card { background: #fff; border: 1px solid #e8e8e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-.cf-section-title { font-size: 11px; font-weight: 600; color: #0F6E56; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.8px; }
-.cf-field { margin-bottom: 1rem; }
-.cf-field:last-child { margin-bottom: 0; }
-.cf-label { display: block; font-size: 13px; color: #666; margin-bottom: 6px; }
-.cf-label-hint { font-size: 11px; color: #aaa; margin-left: 4px; }
-.cf-required { color: #D85A30; margin-left: 2px; }
-.cf-input, .cf-textarea { width: 100%; padding: 10px 12px; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; color: #111; background: #f9f9f7; border: 1px solid #e0e0dc; border-radius: 8px; outline: none; transition: border-color 0.15s; }
-.cf-input:focus, .cf-textarea:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
-.cf-textarea { resize: vertical; min-height: 80px; }
-.cf-chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
-.cf-chip { padding: 7px 14px; font-size: 13px; color: #666; background: #f5f5f3; border: 1px solid #e0e0dc; border-radius: 20px; cursor: pointer; transition: all 0.15s; user-select: none; }
-.cf-chip:hover { border-color: #1D9E75; color: #0F6E56; }
-.cf-chip.active { background: #E1F5EE; border-color: #1D9E75; color: #0F6E56; font-weight: 600; }
-.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.cf-counter { display: flex; align-items: center; gap: 12px; }
-.cf-counter-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #e0e0dc; background: #f5f5f3; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #111; transition: all 0.15s; line-height: 1; }
-.cf-counter-btn:hover { border-color: #1D9E75; color: #0F6E56; }
-.cf-counter-val { font-size: 18px; font-weight: 600; min-width: 28px; text-align: center; color: #111; }
-.cf-submit { width: 100%; padding: 14px; background: #1D9E75; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.15s; margin-top: 0.5rem; }
-.cf-submit:hover { background: #0F6E56; }
-.cf-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 0.75rem; }
-.cf-divider { height: 1px; background: #f0f0ee; margin: 1rem 0; }
-.cf-guide { background: #E1F5EE; border: 1px solid #1D9E75; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; font-size: 13px; color: #0F6E56; line-height: 1.6; }
-.cf-success { display: none; text-align: center; padding: 3rem 1rem; background: #fff; border-radius: 12px; }
-.cf-success-icon { width: 56px; height: 56px; background: #E1F5EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-.cf-success-title { font-size: 18px; font-weight: 600; color: #111; margin-bottom: 8px; }
-.cf-success-desc { font-size: 14px; color: #666; line-height: 1.6; }
-.cf-price-box { background:#f0faf6; border:1.5px solid #1D9E75; border-radius:10px; padding:14px 16px; margin-bottom:12px; display:none; }
-.cf-price-label { font-size:12px; color:#0F6E56; margin-bottom:4px; }
-.cf-price-amount { font-size:24px; font-weight:700; color:#0F6E56; letter-spacing:-0.5px; }
-.cf-price-detail { font-size:12px; color:#5F5E5A; margin-top:6px; line-height:1.6; }
-.cf-privacy { margin-top: 1.5rem; border: 1px solid #e8e8e6; border-radius: 8px; overflow: hidden; }
-.cf-privacy-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; cursor: pointer; background: #fff; font-size: 13px; color: #666; user-select: none; }
-.cf-privacy-header:hover { background: #f9f9f7; }
-.cf-privacy-arrow { font-size: 11px; color: #aaa; transition: transform 0.2s; }
-.cf-privacy-arrow.open { transform: rotate(180deg); }
-.cf-privacy-body { display: none; padding: 14px; background: #f9f9f7; border-top: 1px solid #e8e8e6; font-size: 12px; color: #666; line-height: 1.8; }
-.cf-privacy-body h4 { font-size: 12px; font-weight: 600; color: #444; margin: 10px 0 4px; }
-.cf-privacy-body h4:first-child { margin-top: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; }
+
+.header { text-align: center; padding: 3rem 1rem 2rem; }
+.logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.logo-icon { width: 40px; height: 40px; background: #1D9E75; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.logo-text { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
+.slogan { font-size: 15px; color: #555; margin-top: 4px; }
+.sub { font-size: 12px; color: #aaa; margin-top: 6px; }
+
+.section { max-width: 480px; margin: 0 auto; padding: 0 1rem; }
+
+.cta-top { background: #1D9E75; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem auto; max-width: 480px; margin-left: auto; margin-right: auto; display: block; text-align: center; text-decoration: none; }
+.cta-top-wrap { max-width: 480px; margin: 0 auto; padding: 0 1rem 1rem; }
+.cta-text { color: #fff; font-size: 16px; font-weight: 700; }
+.cta-sub { color: rgba(255,255,255,0.8); font-size: 12px; margin-top: 3px; }
+
+.card { background: #fff; border: 1px solid #e8e8e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+.section-label { font-size: 11px; font-weight: 600; color: #0F6E56; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 1rem; }
+
+.reason-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 1rem; }
+.reason-item:last-child { margin-bottom: 0; }
+.reason-icon { width: 38px; height: 38px; background: #E1F5EE; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.reason-title { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
+.reason-desc { font-size: 12px; color: #888; line-height: 1.6; }
+
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.photo-item { border-radius: 8px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
+.photo-item img:hover { transform: scale(1.03); }
+.photo-label { font-size: 11px; color: #aaa; text-align: center; margin-top: 6px; }
+
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ba-item { text-align: center; }
+.ba-item img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; }
+.ba-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-top: 6px; }
+.tag-before { background: #fef0ee; color: #D85A30; }
+.tag-after { background: #E1F5EE; color: #0F6E56; }
+
+.review-item { background: #f9f9f7; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+.review-item:last-child { margin-bottom: 0; }
+.review-text { font-size: 12px; color: #111; line-height: 1.7; margin-bottom: 6px; }
+.review-meta { font-size: 11px; color: #aaa; }
+
+.cta-bottom-wrap { max-width: 480px; margin: 0 auto; padding: 0 1rem 3rem; }
+.cta-bottom { display: block; width: 100%; padding: 16px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; cursor: pointer; }
+.cta-bottom:hover { background: #0F6E56; }
+.cta-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 8px; }
+
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+.lightbox-close { position: fixed; top: 1rem; right: 1rem; color: #fff; font-size: 28px; cursor: pointer; }
 </style>
 </head>
 <body>
-<div class="cf-wrap">
-  <div class="cf-logo">
-    <div class="cf-logo-mark">
-      <div class="cf-logo-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
-          <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
-        </svg>
-      </div>
-      <span class="cf-logo-text">cleanify</span>
-    </div>
-    <div class="cf-logo-slogan">에어컨 청소를 보다 쉽게.</div>
-    <div class="cf-logo-sub">에어컨 세척 무료 견적 신청</div>
-  </div>
 
-  <div id="form-wrap">
-    <div class="cf-card">
-      <div class="cf-section-title">에어컨 종류</div>
-      <div class="cf-field">
-        <label class="cf-label">유형 선택 <span class="cf-required">*</span></label>
-        <div class="cf-chip-group" id="type-group">
-          <div class="cf-chip" onclick="toggleChip(this,'type')">벽걸이</div>
-          <div class="cf-chip" onclick="toggleChip(this,'type')">스탠드</div>
-          <div class="cf-chip" onclick="toggleChip(this,'type')">2in1</div>
-          <div class="cf-chip" onclick="toggleChip(this,'type')">천정형 가정용</div>
-          <div class="cf-chip" onclick="toggleChip(this,'type')">천정형 사무용</div>
-        </div>
-      </div>
-      <div class="cf-divider"></div>
-      <div class="cf-field">
-        <label class="cf-label">대수 <span class="cf-required">*</span></label>
-        <div class="cf-counter">
-          <button class="cf-counter-btn" onclick="changeCount(-1)">−</button>
-          <span class="cf-counter-val" id="count-val">1</span>
-          <button class="cf-counter-btn" onclick="changeCount(1)">+</button>
-        </div>
-      </div>
-      <div class="cf-divider"></div>
-      <div class="cf-field">
-        <label class="cf-label">특수 모델 해당 여부</label>
-        <div class="cf-chip-group" id="special-group">
-          <div class="cf-chip" onclick="toggleChip(this,'special')">엘지로봇</div>
-          <div class="cf-chip" onclick="toggleChip(this,'special')">갤러리</div>
-          <div class="cf-chip" onclick="toggleChip(this,'special')">무풍3구</div>
-          <div class="cf-chip" onclick="toggleChip(this,'special')">삼성제로1</div>
-          <div class="cf-chip" onclick="toggleChip(this,'special')">미켈란젤로</div>
-          <div class="cf-chip" onclick="toggleChip(this,'special')">해당없음</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cf-price-box" id="price-box">
-      <div class="cf-price-label">예상 견적 금액</div>
-      <div class="cf-price-amount" id="price-amount">0원</div>
-      <div class="cf-price-detail" id="price-detail"></div>
-    </div>
-    <div class="cf-card">
-      <div class="cf-section-title">방문 정보</div>
-      <div class="cf-field">
-        <label class="cf-label">지역 <span class="cf-required">*</span><span class="cf-label-hint">아파트명까지 입력해주세요</span></label>
-        <input class="cf-input" type="text" placeholder="예: 김포 장기동 한강메트로자이" id="region">
-      </div>
-      <div class="cf-row">
-        <div class="cf-field">
-          <label class="cf-label">희망 날짜</label>
-          <input class="cf-input" type="date" id="date">
-        </div>
-        <div class="cf-field">
-          <label class="cf-label" style="visibility:hidden;">시간</label>
-          <div class="cf-chip" style="text-align:center;color:#aaa;font-size:12px;border-style:dashed;" onclick="this.classList.toggle('active');document.getElementById('date').value=''">날짜 협의 가능</div>
-        </div>
-      </div>
-      <div class="cf-field">
-        <label class="cf-label">시간대 선호</label>
-        <div class="cf-chip-group" id="time-group">
-          <div class="cf-chip" onclick="toggleChip(this,'time')">오전(9~12시)</div>
-          <div class="cf-chip" onclick="toggleChip(this,'time')">오후(12~17시)</div>
-          <div class="cf-chip" onclick="toggleChip(this,'time')">저녁(17시 이후)</div>
-          <div class="cf-chip" onclick="toggleChip(this,'time')">시간 협의 가능</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cf-card">
-      <div class="cf-section-title">연락처</div>
-      <div class="cf-field">
-        <label class="cf-label">이름 <span class="cf-required">*</span></label>
-        <input class="cf-input" type="text" placeholder="홍길동" id="name">
-      </div>
-      <div class="cf-field">
-        <label class="cf-label">연락처 <span class="cf-required">*</span></label>
-        <input class="cf-input" type="tel" placeholder="010-0000-0000" id="phone">
-      </div>
-      <div class="cf-field">
-        <label class="cf-label">추가 문의사항</label>
-        <textarea class="cf-textarea" placeholder="특이사항이나 궁금한 점을 적어주세요." id="memo"></textarea>
-      </div>
-    </div>
-
-    <div class="cf-guide">
-      신청 버튼을 누르면 바로 접수됩니다.<br>영업일 기준 1일 이내 연락드립니다.
-    </div>
-    <button class="cf-submit" onclick="submitForm()">무료 견적 신청하기</button>
-    <p class="cf-note">접수 후 영업일 기준 1일 이내 연락드립니다.</p>
-
-    <div class="cf-privacy">
-      <div class="cf-privacy-header" onclick="togglePrivacy()">
-        <span>개인정보 수집 및 이용 안내</span>
-        <span class="cf-privacy-arrow" id="privacy-arrow">▼</span>
-      </div>
-      <div class="cf-privacy-body" id="privacy-body">
-        <h4>수집 항목</h4>
-        이름, 연락처, 주소(지역), 에어컨 유형 및 대수, 희망 방문 일정
-
-        <h4>수집 목적</h4>
-        에어컨 세척 견적 안내 및 방문 일정 조율을 위한 연락
-
-        <h4>보유 및 이용 기간</h4>
-        서비스 완료 후 지체 없이 파기합니다. 단, 관련 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관 후 파기합니다.
-
-        <h4>동의 거부 권리</h4>
-        개인정보 수집 및 이용에 동의하지 않으실 수 있습니다. 다만, 동의 거부 시 견적 신청 서비스 이용이 제한될 수 있습니다.
-
-        <h4>개인정보 제3자 제공</h4>
-        수집된 개인정보는 서비스 제공 목적 외 제3자에게 제공하지 않습니다.
-
-        견적 신청 시 위 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.
-      </div>
-    </div>
-  </div>
-
-  <div class="cf-success" id="success-wrap">
-    <div class="cf-success-icon">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="14" fill="#1D9E75"/>
-        <path d="M8 14l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<div class="header">
+  <div class="logo-mark">
+    <div class="logo-icon">
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+        <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
+        <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
       </svg>
     </div>
-    <div class="cf-success-title">견적 신청이 완료됐습니다</div>
-    <div class="cf-success-desc">접수가 완료됐습니다.<br>영업일 기준 1일 이내 연락드리겠습니다.</div>
+    <span class="logo-text">cleanify</span>
   </div>
+  <div class="slogan">에어컨 청소를 보다 쉽게.</div>
+  <div class="sub">수도권 출장 세척</div>
+</div>
+
+<div class="cta-top-wrap">
+  <a href="form.html" class="cta-top">
+    <div class="cta-text">무료 견적 신청하기</div>
+    <div class="cta-sub">1영업일 이내 연락드립니다</div>
+  </a>
+</div>
+
+<div class="section">
+
+  <div class="card">
+    <div class="section-label">왜 에어컨 청소가 필요할까요</div>
+    <div class="reason-item">
+      <div class="reason-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" stroke="#1D9E75" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="#1D9E75" stroke-width="1.5"/></svg>
+      </div>
+      <div>
+        <div class="reason-title">필터 청소만으로는 부족합니다</div>
+        <div class="reason-desc">필터 안쪽 열교환기와 팬 날개에 곰팡이와 세균이 쌓입니다. 에어컨을 켤 때마다 그게 공기 중에 퍼집니다.</div>
+      </div>
+    </div>
+    <div class="reason-item">
+      <div class="reason-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1D9E75" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="reason-title">냄새의 원인은 곰팡이입니다</div>
+        <div class="reason-desc">여름 시작할 때 나는 퀴퀴한 냄새. 전문 세척으로 내부까지 깨끗하게 제거할 수 있습니다.</div>
+      </div>
+    </div>
+    <div class="reason-item">
+      <div class="reason-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#1D9E75" stroke-width="1.5"/></svg>
+      </div>
+      <div>
+        <div class="reason-title">아이 있는 집이라면 더 중요합니다</div>
+        <div class="reason-desc">호흡기가 약한 아이들에게 오염된 에어컨 공기는 더 큰 영향을 줄 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">세척 전 · 후</div>
+    <div class="before-after">
+      <div class="ba-item">
+        <img src="KakaoTalk_Photo_2026-04-09-11-09-41_007.jpeg" alt="세척 전 내부" onclick="openLightbox(this.src)">
+        <span class="ba-tag tag-before">세척 전</span>
+      </div>
+      <div class="ba-item">
+        <img src="KakaoTalk_Photo_2026-04-09-11-09-41_011.jpeg" alt="세척 후" onclick="openLightbox(this.src)">
+        <span class="ba-tag tag-after">세척 후</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">실제 시공 사례</div>
+    <div class="photo-grid">
+      <div class="photo-item"><img src="KakaoTalk_Photo_2026-04-09-11-09-41_008.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="KakaoTalk_Photo_2026-04-09-11-09-41_009.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="KakaoTalk_Photo_2026-04-09-11-09-41_010.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="KakaoTalk_Photo_2026-04-09-11-09-41_005.jpeg" alt="시공사례" onclick="openLightbox(this.src)"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">고객 후기</div>
+    <div class="review-item">
+      <div class="review-text">"5년 동안 필터만 닦다가 처음 전문 세척 받았는데 속이 시커멓더라고요. 세척 후 냄새가 완전히 없어졌습니다."</div>
+      <div class="review-meta">마포구 · 마포래미안푸르지오 · 벽걸이 2대</div>
+    </div>
+    <div class="review-item">
+      <div class="review-text">"아이가 기침을 자주 해서 불렀는데 팬 쪽에 곰팡이가 엄청 있었어요. 청소하고 나서 확실히 달라진 것 같아요."</div>
+      <div class="review-meta">성동구 · 옥수파크힐스 · 스탠드 1대</div>
+    </div>
+    <div class="review-item">
+      <div class="review-text">"사무실 천정형 4대 한 번에 맡겼는데 빠르고 깔끔하게 해주셨어요. 가격도 합리적이었습니다."</div>
+      <div class="review-meta">강동구 · 고덕그라시움 · 천정형 4대</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-bottom-wrap">
+  <a href="form.html" class="cta-bottom">무료 견적 신청하기</a>
+  <div class="cta-note">수도권 1시간 거리 출장 가능</div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
-const VIEWFORM = "https://docs.google.com/forms/d/e/1FAIpQLSdo6rwQqerzUBeXjVYEXp9rMFGWYXguOIEcJPS99MpCXfAARg/viewform";
-const ENTRY = {
-  name:    "entry.823388570",
-  phone:   "entry.779023184",
-  region:  "entry.82353120",
-  type:    "entry.324134475",
-  count:   "entry.2110133744",
-  special: "entry.2024609800",
-  time:    "entry.1174882794",
-  memo:    "entry.278506186",
-  date_y:  "entry.283588790_year",
-  date_m:  "entry.283588790_month",
-  date_d:  "entry.283588790_day"
-};
-
-let count = 1;
-
-function changeCount(delta) {
-  count = Math.max(1, Math.min(10, count + delta));
-  document.getElementById('count-val').textContent = count;
-  calcPrice();
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
 }
-
-
-const PRICES = {
-  '벽걸이':       { one: 90000, multi: 80000 },
-  '스탠드':       { one: 130000, multi: 130000 },
-  '2in1':         { one: 190000, multi: 190000 },
-  '천정형 가정용': { one: 110000, multi: 90000 },
-  '천정형 사무용': { one: 150000, multi: 150000 },
-};
-const SPECIAL_FIXED = ['미켈란젤로', '갤러리'];
-const SPECIAL_FIXED_PRICE = 250000;
-const SPECIAL_ADD = 20000;
-
-function calcPrice() {
-  const typeEl = document.querySelector('#type-group .cf-chip.active');
-  if (!typeEl) { document.getElementById('price-box').style.display='none'; return; }
-
-  const typeName = typeEl.textContent;
-  const activeSpecials = [...document.querySelectorAll('#special-group .cf-chip.active')]
-    .map(c => c.textContent).filter(t => t !== '해당없음');
-
-  const hasFixed = activeSpecials.some(s => SPECIAL_FIXED.includes(s));
-  const fmt = n => n.toLocaleString('ko-KR') + '원';
-  let total, detail;
-
-  if (hasFixed) {
-    total = SPECIAL_FIXED_PRICE * count;
-    detail = activeSpecials.filter(s => SPECIAL_FIXED.includes(s)).join('/') + ' ' + count + '대 × ' + fmt(SPECIAL_FIXED_PRICE);
-  } else {
-    const p = PRICES[typeName];
-    if (!p) return;
-    const unitPrice = count >= 2 ? p.multi : p.one;
-    const otherSpecials = activeSpecials.filter(s => !SPECIAL_FIXED.includes(s));
-    const specialAdd = otherSpecials.length > 0 ? SPECIAL_ADD * count : 0;
-    total = unitPrice * count + specialAdd;
-    detail = typeName + ' ' + count + '대 × ' + fmt(unitPrice);
-    if (specialAdd > 0) detail += ' + 특수모델 추가금 ' + fmt(specialAdd);
-  }
-
-  document.getElementById('price-amount').textContent = fmt(total);
-  document.getElementById('price-detail').textContent = detail;
-  document.getElementById('price-box').style.display = 'block';
-}
-
-function toggleChip(el, group) {
-const isSingle = ['type','time','special'].includes(group);
-
-  if (isSingle) {
-    document.querySelectorAll('#' + group + '-group .cf-chip').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
-  } else {
-    el.classList.toggle('active');
-  }
-  calcPrice();
-}
-
-function togglePrivacy() {
-  const body = document.getElementById('privacy-body');
-  const arrow = document.getElementById('privacy-arrow');
-  const isOpen = body.style.display === 'block';
-  body.style.display = isOpen ? 'none' : 'block';
-  arrow.classList.toggle('open', !isOpen);
-}
-
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7RbwG87KkxTRL7U6wIw0KLxWcE6qjEaFghMk9ii3vPX9K131fzKpgfMP0j4YTpqdncw/exec";
-
-function submitForm() {
-  const name   = document.getElementById('name').value.trim();
-  const phone  = document.getElementById('phone').value.trim();
-  const region = document.getElementById('region').value.trim();
-  const type   = document.querySelector('#type-group .cf-chip.active');
-
-  if (!name || !phone || !region || !type) {
-    alert('이름, 연락처, 지역, 에어컨 유형은 필수입니다.');
-    return;
-  }
-
-  const specials = [...document.querySelectorAll('#special-group .cf-chip.active')].map(c => c.textContent);
-  const time     = document.querySelector('#time-group .cf-chip.active')?.textContent || '';
-  const memo     = document.getElementById('memo').value.trim();
-  const dateVal  = document.getElementById('date').value;
-
-  const btn = document.querySelector('.cf-submit');
-  btn.textContent = '신청 중...';
-  btn.disabled = true;
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name, phone, region,
-      type: type.textContent,
-      count: String(count),
-      special: specials.length ? specials.join(', ') : '해당없음',
-      time, memo,
-      date: dateVal || '협의'
-    })
-  }).then(() => {
-    document.getElementById('form-wrap').style.display = 'none';
-    document.getElementById('success-wrap').style.display = 'block';
-  }).catch(() => {
-    alert('오류가 발생했습니다. 다시 시도해주세요.');
-    btn.textContent = '무료 견적 신청하기';
-    btn.disabled = false;
-  });
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
 }
 </script>
 </body>
