@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>클리니파이 | 에어컨 세척 무료 견적 신청</title>
 <style>
@@ -75,7 +76,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
           <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
         </svg>
       </div>
-      <a href="index.html" style="text-decoration:none;color:inherit;"><span class="cf-logo-text">cleanify</span></a>
+      <a href="index.html" style="text-decoration:none;color:inherit;"><span class="cf-logo-text">CLEANIFY</span></a>
     </div>
     <div class="cf-logo-slogan">에어컨 청소를 보다 쉽게.</div>
     <div class="cf-logo-sub">에어컨 세척 무료 견적 신청</div>
@@ -135,14 +136,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
         <label class="cf-label">지역 <span class="cf-required">*</span><span class="cf-label-hint">아파트명까지 입력해주세요</span></label>
         <input class="cf-input" type="text" placeholder="예: 마포구 아현동 마포래미안푸르지오" id="region">
       </div>
-      <div class="cf-row">
-        <div class="cf-field">
-          <label class="cf-label">희망 날짜</label>
-          <input class="cf-input" type="date" id="date">
-        </div>
-        <div class="cf-field">
-          <label class="cf-label" style="visibility:hidden;">시간</label>
-          <div class="cf-chip" style="text-align:center;color:#aaa;font-size:12px;border-style:dashed;" onclick="this.classList.toggle('active');document.getElementById('date').value=''">날짜 협의 가능</div>
+      <div class="cf-field">
+        <label class="cf-label">희망 날짜</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input class="cf-input" type="date" id="date" style="flex:1;">
+          <div class="cf-chip" style="white-space:nowrap;color:#aaa;font-size:12px;border-style:dashed;flex-shrink:0;" onclick="this.classList.toggle('active');document.getElementById('date').value=''">날짜 협의</div>
         </div>
       </div>
       <div class="cf-field">
@@ -243,16 +241,17 @@ function changeCount(delta) {
 
 
 
-const PROMO_CODE = '2026';
+const PROMO_CODES = ['2026', 'SUMMER', 'BLOG2604', 'CAFE2604'];
 const PROMO_DISCOUNT = 10000;
 let promoApplied = false;
 
 function applyPromo() {
-  const input = document.getElementById('promo-input').value.trim();
+  const input = document.getElementById('promo-input').value.trim().toUpperCase();
+  const PROMO_CODES_UPPER = PROMO_CODES.map(c => c.toUpperCase());
   const msg = document.getElementById('promo-msg');
   const typeEl = document.querySelector('#type-group .cf-chip.active');
 
-  if (input === PROMO_CODE) {
+  if (PROMO_CODES_UPPER.includes(input)) {
     const activeSpecials = [...document.querySelectorAll('#special-group .cf-chip.active')]
       .map(c => c.textContent).filter(t => t !== '해당없음');
     const isFixed = activeSpecials.some(s => SPECIAL_FIXED.includes(s));
@@ -375,7 +374,8 @@ function submitForm() {
       special: specials.length ? specials.join(', ') : '해당없음',
       time, memo,
       date: dateVal || '협의',
-      promoCode: promoApplied ? PROMO_CODE : '',
+      gateCode: sessionStorage.getItem('gateCode') || '',
+      promoCode: promoApplied ? input : '',
       promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
       price: document.getElementById('price-amount').textContent,
       priceDetail: document.getElementById('price-detail').textContent
