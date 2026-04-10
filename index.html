@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>클리니파이 | 에어컨 청소를 보다 쉽게</title>
 <style>
@@ -75,7 +76,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
           <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
         </svg>
       </div>
-      <span style="font-size:22px;font-weight:700;color:#111;letter-spacing:-0.5px;">cleanify</span>
+      <span style="font-size:22px;font-weight:700;color:#111;letter-spacing:-0.5px;">CLEANIFY</span>
     </div>
     <div style="font-size:15px;font-weight:600;color:#111;margin-bottom:6px;">초대 코드를 입력해주세요</div>
     <div style="font-size:13px;color:#888;margin-bottom:1.5rem;line-height:1.6;">클리니파이 특별 초대 고객만<br>접근 가능한 페이지입니다.</div>
@@ -97,7 +98,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
         <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
       </svg>
     </div>
-    <span class="logo-text">cleanify</span>
+    <span class="logo-text">CLEANIFY</span>
   </div>
   <div class="slogan">에어컨 청소를 보다 쉽게.</div>
   <div class="sub">수도권 출장 세척</div>
@@ -202,8 +203,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 const GATE_CODES = ['20262026', '2026'];
 
 function checkGate() {
-  const val = document.getElementById('gate-input').value.trim();
-  if (GATE_CODES.includes(val)) {
+  const val = document.getElementById('gate-input').value.trim().toUpperCase();
+  if (GATE_CODES.map(c => c.toUpperCase()).includes(val)) {
+    sessionStorage.setItem('gateCode', val);
     document.getElementById('gate-wrap').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
   } else {
