@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
+<title>CLEANIFY | 줄눈 시공</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; padding-bottom: 100px; }
+
+.header { text-align: center; padding: 2.5rem 1rem 1.5rem; max-width: 680px; margin: 0 auto; }
+.logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.logo-icon { width: 36px; height: 36px; background: #1D9E75; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.logo-text { font-size: 22px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
+.slogan { font-size: 13px; color: #888; margin-top: 2px; }
+.sub { font-size: 12px; color: #aaa; margin-top: 6px; }
+
+.section { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
+.card { background: #fff; border: 1px solid #e8e8e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+.section-label { font-size: 11px; font-weight: 600; color: #0F6E56; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 1rem; }
+
+.price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.price-table th { background: #f0faf6; color: #0F6E56; font-weight: 600; padding: 8px 10px; text-align: center; border: 1px solid #e8e8e6; font-size: 12px; }
+.price-table td { padding: 8px 10px; border: 1px solid #e8e8e6; color: #111; }
+.price-table td:first-child { font-weight: 500; color: #333; }
+.price-table td:not(:first-child) { text-align: right; }
+.price-note { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.6; }
+
+.tab-wrap { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tab { flex: 1; padding: 8px; text-align: center; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; border: 1px solid #e0e0dc; background: #f5f5f3; color: #666; transition: all 0.15s; }
+.tab.active { background: #1D9E75; color: #fff; border-color: #1D9E75; }
+
+.table-wrap { display: none; }
+.table-wrap.active { display: block; }
+
+.fixed-cta { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 1rem 24px; background: transparent; z-index: 100; }
+.fixed-cta-inner { max-width: 680px; margin: 0 auto; }
+.fixed-cta a { display: block; width: 100%; padding: 16px; background: #1D9E75; color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; box-shadow: 0 4px 20px rgba(29,158,117,0.35); }
+.fixed-cta a:hover { background: #0F6E56; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" style="text-decoration:none;">
+    <div class="logo-mark">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
+          <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
+        </svg>
+      </div>
+      <span class="logo-text">CLEANIFY</span>
+    </div>
+  </a>
+  <div class="slogan">줄눈 시공 (케라폭시)</div>
+  <div class="sub">수도권 출장 시공</div>
+</div>
+
+<div class="section">
+
+  <div class="card">
+    <div class="section-label">왜 케라폭시 줄눈인가요</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">🦠</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">곰팡이와 세균의 온상</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">오래된 줄눈은 곰팡이와 세균이 번식하기 쉬운 환경입니다. 케라폭시는 항균 성분으로 위생적으로 유지됩니다.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">✨</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">새집처럼 깨끗하게</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">변색되고 지저분해진 줄눈을 새것처럼 깔끔하게 복원합니다. 입주 전 시공 시 더욱 효과적입니다.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">💪</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">내구성이 뛰어납니다</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">에폭시 계열 소재로 일반 줄눈보다 훨씬 강하고 오래갑니다. 한 번 시공으로 오랫동안 유지됩니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">시공 가격표 (정상가 기준)</div>
+    <div class="tab-wrap">
+      <div class="tab active" onclick="switchTab('live')">거주중</div>
+      <div class="tab" onclick="switchTab('new')">입주예정</div>
+    </div>
+
+    <div class="table-wrap active" id="tab-live">
+      <table class="price-table">
+        <tr>
+          <th>시공 부위</th>
+          <th>정상가</th>
+        </tr>
+        <tr><td>현관</td><td>250,000원</td></tr>
+        <tr><td>화장실 1곳 바닥</td><td>500,000원</td></tr>
+        <tr><td>화장실 1곳 벽면 전체</td><td>1,000,000원</td></tr>
+        <tr><td>세탁실</td><td>350,000원</td></tr>
+        <tr><td>베란다</td><td>350,000원</td></tr>
+        <tr><td>거실 80-100</td><td>1,200,000원</td></tr>
+        <tr><td>거실 100 이상</td><td>1,400,000원</td></tr>
+      </table>
+      <div class="price-note">* 타일 300각 기준 · 별도 사이즈 추가 문의<br>* 스타라이크, 푸가리테 추가 문의</div>
+    </div>
+
+    <div class="table-wrap" id="tab-new">
+      <table class="price-table">
+        <tr>
+          <th>시공 부위</th>
+          <th>정상가</th>
+        </tr>
+        <tr><td>현관</td><td>200,000원</td></tr>
+        <tr><td>화장실 1곳 바닥</td><td>400,000원</td></tr>
+        <tr><td>화장실 1곳 벽면 전체</td><td>800,000원</td></tr>
+        <tr><td>세탁실</td><td>300,000원</td></tr>
+        <tr><td>베란다</td><td>300,000원</td></tr>
+        <tr><td>거실 80-100</td><td>1,200,000원</td></tr>
+        <tr><td>거실 100 이상</td><td>1,400,000원</td></tr>
+      </table>
+      <div class="price-note">* 타일 300각 기준 · 별도 사이즈 추가 문의<br>* 스타라이크, 푸가리테 추가 문의</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="fixed-cta">
+  <div class="fixed-cta-inner">
+    <a href="gr-form.html">무료 견적 신청하기</a>
+  </div>
+</div>
+
+<script>
+function switchTab(type) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.table-wrap').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + type).classList.add('active');
+}
+</script>
+</body>
+</html>
