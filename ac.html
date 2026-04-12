@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
+<title>CLEANIFY | 에어컨 세척</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #fff; color: #111; padding-bottom: 120px; }
+
+.hero { background: #111; color: #fff; text-align: center; padding: 5rem 1.5rem 4rem; }
+.hero-logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 2.5rem; opacity: 0.7; text-decoration: none; }
+.hero-logo-icon { width: 28px; height: 28px; background: #1D9E75; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+.hero-logo-text { font-size: 16px; font-weight: 600; letter-spacing: 2px; color: #fff; }
+.hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #1D9E75; margin-bottom: 1rem; }
+.hero-title { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 1.25rem; }
+.hero-title span { color: #1D9E75; }
+.hero-sub { font-size: clamp(14px, 3vw, 17px); color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+.section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #1D9E75; margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 1rem; }
+.section-desc { font-size: 15px; color: #555; line-height: 1.8; }
+
+.divider { height: 1px; background: #f0f0f0; max-width: 680px; margin: 0 auto; }
+
+.reason-section { background: #f9f9f7; }
+.reason-inner { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+@media (max-width: 480px) { .reason-grid { grid-template-columns: 1fr; } }
+.reason-card { background: #fff; border-radius: 16px; padding: 1.5rem; }
+.reason-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #1D9E75; margin-bottom: 0.5rem; }
+.reason-card-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 0.5rem; }
+.reason-card-desc { font-size: 13px; color: #888; line-height: 1.7; }
+
+.ba-section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2rem; }
+.ba-item { text-align: center; }
+.ba-item img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; cursor: pointer; }
+.ba-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-top: 8px; }
+.tag-before { background: #fef0ee; color: #D85A30; }
+.tag-after { background: #E1F5EE; color: #0F6E56; }
+
+.case-section { background: #f9f9f7; }
+.case-inner { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 2rem; }
+.photo-item { border-radius: 12px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
+.photo-item img:hover { transform: scale(1.03); }
+
+.review-section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.review-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.review-card { background: #f9f9f7; border-radius: 16px; padding: 1.5rem; }
+.review-stars { color: #1D9E75; font-size: 13px; margin-bottom: 0.75rem; letter-spacing: 2px; }
+.review-text { font-size: 14px; color: #111; line-height: 1.8; margin-bottom: 0.75rem; }
+.review-meta { font-size: 12px; color: #aaa; }
+
+.fixed-cta { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 1.5rem 28px; background: transparent; z-index: 100; }
+.fixed-cta-inner { max-width: 680px; margin: 0 auto; }
+.fixed-cta a { display: block; width: 100%; padding: 17px; background: #1D9E75; color: #fff; border-radius: 14px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; box-shadow: 0 6px 24px rgba(29,158,117,0.4); letter-spacing: -0.3px; }
+
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+.lightbox-close { position: fixed; top: 1rem; right: 1rem; color: #fff; font-size: 28px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <a href="index.html" class="hero-logo">
+    <div class="hero-logo-icon">
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+        <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
+        <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
+      </svg>
+    </div>
+    <span class="hero-logo-text">CLEANIFY</span>
+  </a>
+  <div class="hero-eyebrow">Air Conditioner Cleaning</div>
+  <h1 class="hero-title">에어컨 속,<br><span>제대로 본 적 있나요.</span></h1>
+  <p class="hero-sub">필터 너머의 세계. 열교환기와 팬 날개에 쌓인 곰팡이는 매번 당신의 공기 속으로 들어옵니다. 클리니파이가 그 안을 바꿉니다.</p>
+</div>
+
+<div class="reason-section">
+  <div class="reason-inner">
+    <div class="section-eyebrow">Why Clean</div>
+    <h2 class="section-title">필터 청소만으론<br>부족한 이유</h2>
+    <div class="reason-grid">
+      <div class="reason-card">
+        <div class="reason-num">01</div>
+        <div class="reason-card-title">필터 안쪽이 진짜 문제</div>
+        <div class="reason-card-desc">열교환기와 팬 날개에 곰팡이와 세균이 쌓입니다. 에어컨을 켤 때마다 그게 공기 중으로 퍼집니다.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">02</div>
+        <div class="reason-card-title">냄새의 원인은 곰팡이</div>
+        <div class="reason-card-desc">여름 시작할 때 나는 퀴퀴한 냄새. 익숙해지면 안 됩니다. 전문 세척으로 근본 원인을 제거합니다.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">03</div>
+        <div class="reason-card-title">아이 있는 집은 더 중요</div>
+        <div class="reason-card-desc">호흡기가 약한 아이들에게 오염된 에어컨 공기는 더 큰 영향을 줄 수 있습니다.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">04</div>
+        <div class="reason-card-title">냉방 효율도 올라감</div>
+        <div class="reason-card-desc">내부 오염이 심할수록 냉방 효율이 떨어집니다. 세척 후 확연히 달라진 바람을 느끼실 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="ba-section">
+  <div class="section-eyebrow">Before / After</div>
+  <h2 class="section-title">세척 전 · 후</h2>
+  <div class="ba-grid">
+    <div class="ba-item">
+      <img src="cleanify-photo-007.png" alt="세척 전" onclick="openLightbox(this.src)">
+      <span class="ba-tag tag-before">세척 전</span>
+    </div>
+    <div class="ba-item">
+      <img src="cleanify-photo-011.png" alt="세척 후" onclick="openLightbox(this.src)">
+      <span class="ba-tag tag-after">세척 후</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="case-section">
+  <div class="case-inner">
+    <div class="section-eyebrow">Case Study</div>
+    <h2 class="section-title">실제 시공 사례</h2>
+    <div class="photo-grid">
+      <div class="photo-item"><img src="cleanify001.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify002.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify003.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify004.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify005.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+      <div class="photo-item"><img src="cleanify006.png" alt="시공사례" onclick="openLightbox(this.src)"></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="review-section">
+  <div class="section-eyebrow">Reviews</div>
+  <h2 class="section-title">고객 후기</h2>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"5년 동안 필터만 닦다가 처음 전문 세척 받았는데 속이 시커멓더라고요. 세척 후 냄새가 완전히 없어졌습니다."</div>
+      <div class="review-meta">마포구 · 마포래미안푸르지오 · 벽걸이 2대</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"아이가 기침을 자주 해서 불렀는데 팬 쪽에 곰팡이가 엄청 있었어요. 청소하고 나서 확실히 달라진 것 같아요."</div>
+      <div class="review-meta">성동구 · 옥수파크힐스 · 스탠드 1대</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"사무실 천정형 4대 한 번에 맡겼는데 빠르고 깔끔하게 해주셨어요. 가격도 합리적이었습니다."</div>
+      <div class="review-meta">강동구 · 고덕그라시움 · 천정형 4대</div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-cta">
+  <div class="fixed-cta-inner">
+    <a href="ac-form.html">무료 견적 신청하기</a>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+</script>
+</body>
+</html>
