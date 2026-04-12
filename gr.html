@@ -7,128 +7,177 @@
 <title>CLEANIFY | 줄눈 시공</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f5f5f3; padding-bottom: 100px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #fff; color: #111; padding-bottom: 120px; }
 
-.header { text-align: center; padding: 2.5rem 1rem 1.5rem; max-width: 680px; margin: 0 auto; }
-.logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.logo-icon { width: 36px; height: 36px; background: #1D9E75; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-.logo-text { font-size: 22px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
-.slogan { font-size: 13px; color: #888; margin-top: 2px; }
-.sub { font-size: 12px; color: #aaa; margin-top: 6px; }
+.hero { background: #111; color: #fff; text-align: center; padding: 5rem 1.5rem 4rem; }
+.hero-logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 2.5rem; opacity: 0.7; }
+.hero-logo-icon { width: 28px; height: 28px; background: #1D9E75; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+.hero-logo-text { font-size: 16px; font-weight: 600; letter-spacing: 2px; color: #fff; text-decoration: none; }
+.hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #1D9E75; margin-bottom: 1rem; }
+.hero-title { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 1.25rem; }
+.hero-title span { color: #1D9E75; }
+.hero-sub { font-size: clamp(14px, 3vw, 17px); color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 480px; margin: 0 auto; }
 
-.section { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
-.card { background: #fff; border: 1px solid #e8e8e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-.section-label { font-size: 11px; font-weight: 600; color: #0F6E56; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 1rem; }
+.section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #1D9E75; margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 1rem; }
+.section-desc { font-size: 15px; color: #555; line-height: 1.8; }
 
-.price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.price-table th { background: #f0faf6; color: #0F6E56; font-weight: 600; padding: 8px 10px; text-align: center; border: 1px solid #e8e8e6; font-size: 12px; }
-.price-table td { padding: 8px 10px; border: 1px solid #e8e8e6; color: #111; }
-.price-table td:first-child { font-weight: 500; color: #333; }
-.price-table td:not(:first-child) { text-align: right; }
-.price-note { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.6; }
+.divider { height: 1px; background: #f0f0f0; max-width: 680px; margin: 0 auto; }
 
-.tab-wrap { display: flex; gap: 8px; margin-bottom: 1rem; }
-.tab { flex: 1; padding: 8px; text-align: center; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; border: 1px solid #e0e0dc; background: #f5f5f3; color: #666; transition: all 0.15s; }
-.tab.active { background: #1D9E75; color: #fff; border-color: #1D9E75; }
+.keraplast-section { background: #f9f9f7; }
+.keraplast-inner { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.keraplast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+@media (max-width: 480px) { .keraplast-grid { grid-template-columns: 1fr; } }
+.keraplast-card { background: #fff; border-radius: 16px; padding: 1.5rem; }
+.keraplast-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #1D9E75; margin-bottom: 0.5rem; }
+.keraplast-card-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 0.5rem; }
+.keraplast-card-desc { font-size: 13px; color: #888; line-height: 1.7; }
 
+.price-section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.tab-wrap { display: flex; gap: 8px; margin: 2rem 0 1.5rem; background: #f5f5f3; border-radius: 12px; padding: 4px; }
+.tab { flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; border-radius: 9px; cursor: pointer; border: none; background: transparent; color: #888; transition: all 0.2s; }
+.tab.active { background: #fff; color: #111; box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
 .table-wrap { display: none; }
 .table-wrap.active { display: block; }
+.price-table { width: 100%; border-collapse: collapse; }
+.price-table tr { border-bottom: 1px solid #f0f0f0; }
+.price-table tr:last-child { border-bottom: none; }
+.price-table td { padding: 14px 4px; font-size: 14px; }
+.price-table td:first-child { color: #333; font-weight: 500; }
+.price-table td:last-child { text-align: right; font-weight: 600; color: #111; }
+.price-note { font-size: 12px; color: #aaa; margin-top: 1rem; line-height: 1.8; padding: 1rem; background: #f9f9f7; border-radius: 8px; }
 
-.fixed-cta { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 1rem 24px; background: transparent; z-index: 100; }
+.review-section { background: #f9f9f7; }
+.review-inner { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
+.review-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.review-card { background: #fff; border-radius: 16px; padding: 1.5rem; }
+.review-stars { color: #1D9E75; font-size: 13px; margin-bottom: 0.75rem; letter-spacing: 2px; }
+.review-text { font-size: 14px; color: #111; line-height: 1.8; margin-bottom: 0.75rem; }
+.review-meta { font-size: 12px; color: #aaa; }
+
+.fixed-cta { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 1.5rem 28px; background: transparent; z-index: 100; }
 .fixed-cta-inner { max-width: 680px; margin: 0 auto; }
-.fixed-cta a { display: block; width: 100%; padding: 16px; background: #1D9E75; color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; box-shadow: 0 4px 20px rgba(29,158,117,0.35); }
-.fixed-cta a:hover { background: #0F6E56; }
+.fixed-cta a { display: block; width: 100%; padding: 17px; background: #1D9E75; color: #fff; border-radius: 14px; font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; box-shadow: 0 6px 24px rgba(29,158,117,0.4); letter-spacing: -0.3px; }
 </style>
 </head>
 <body>
 
-<div class="header">
+<div class="hero">
   <a href="index.html" style="text-decoration:none;">
-    <div class="logo-mark">
-      <div class="logo-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <div class="hero-logo">
+      <div class="hero-logo-icon">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
           <path d="M10 3C7 3 5 5.5 5 8c0 3 3 6 5 8 2-2 5-5 5-8 0-2.5-2-5-5-5z" fill="white" opacity="0.9"/>
           <circle cx="10" cy="8" r="2" fill="#1D9E75"/>
         </svg>
       </div>
-      <span class="logo-text">CLEANIFY</span>
+      <span class="hero-logo-text">CLEANIFY</span>
     </div>
   </a>
-  <div class="slogan">줄눈 시공 (케라폭시)</div>
-  <div class="sub">수도권 출장 시공</div>
+  <div class="hero-eyebrow">Keraplast Grout</div>
+  <h1 class="hero-title">타일 사이의<br><span>새로운 기준.</span></h1>
+  <p class="hero-sub">이탈리아 장인의 기술에서 출발한 케라폭시. 단순한 줄눈 시공이 아닙니다. 공간의 품격을 다시 정의합니다.</p>
 </div>
 
 <div class="section">
+  <div class="section-eyebrow">What is Keraplast</div>
+  <h2 class="section-title">케라폭시란 무엇일까요</h2>
+  <p class="section-desc">케라폭시는 이탈리아의 타일 시공 브랜드 Kerakoll에서 개발한 에폭시 기반 줄눈재입니다. 수십 년간 유럽의 고급 주거 공간과 상업 시설에서 사용되어온 소재로, 일반 시멘트 줄눈과는 근본적으로 다른 내구성과 위생성을 자랑합니다. 곰팡이와 세균이 번식할 수 없는 항균 구조, 오염에 강한 발수 코팅, 그리고 수십 년이 지나도 변색되지 않는 색상 안정성. 클리니파이는 이 기술을 당신의 공간에 그대로 적용합니다.</p>
+</div>
 
-  <div class="card">
-    <div class="section-label">왜 케라폭시 줄눈인가요</div>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">🦠</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">곰팡이와 세균의 온상</div>
-          <div style="font-size:12px;color:#888;line-height:1.6;">오래된 줄눈은 곰팡이와 세균이 번식하기 쉬운 환경입니다. 케라폭시는 항균 성분으로 위생적으로 유지됩니다.</div>
-        </div>
+<div class="divider"></div>
+
+<div class="keraplast-section">
+  <div class="keraplast-inner">
+    <div class="section-eyebrow">Why Keraplast</div>
+    <h2 class="section-title">선택해야 하는<br>네 가지 이유</h2>
+    <div class="keraplast-grid">
+      <div class="keraplast-card">
+        <div class="keraplast-num">01</div>
+        <div class="keraplast-card-title">곰팡이 제로</div>
+        <div class="keraplast-card-desc">에폭시 구조 특성상 수분이 침투하지 못합니다. 곰팡이와 세균이 번식할 환경 자체가 만들어지지 않습니다.</div>
       </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">✨</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">새집처럼 깨끗하게</div>
-          <div style="font-size:12px;color:#888;line-height:1.6;">변색되고 지저분해진 줄눈을 새것처럼 깔끔하게 복원합니다. 입주 전 시공 시 더욱 효과적입니다.</div>
-        </div>
+      <div class="keraplast-card">
+        <div class="keraplast-num">02</div>
+        <div class="keraplast-card-title">변색 없음</div>
+        <div class="keraplast-card-desc">시멘트 줄눈은 시간이 지나면 검게 변합니다. 케라폭시는 10년이 지나도 시공 당일의 색을 유지합니다.</div>
       </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:38px;height:38px;background:#E1F5EE;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">💪</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px;">내구성이 뛰어납니다</div>
-          <div style="font-size:12px;color:#888;line-height:1.6;">에폭시 계열 소재로 일반 줄눈보다 훨씬 강하고 오래갑니다. 한 번 시공으로 오랫동안 유지됩니다.</div>
-        </div>
+      <div class="keraplast-card">
+        <div class="keraplast-num">03</div>
+        <div class="keraplast-card-title">청소가 쉬움</div>
+        <div class="keraplast-card-desc">표면이 매끄럽고 발수성이 뛰어나 오염이 쉽게 닦입니다. 화장실 청소 시간이 확연히 줄어듭니다.</div>
+      </div>
+      <div class="keraplast-card">
+        <div class="keraplast-num">04</div>
+        <div class="keraplast-card-title">공간의 품격</div>
+        <div class="keraplast-card-desc">깨끗하게 정렬된 줄눈은 공간 전체의 완성도를 높입니다. 인테리어의 마지막 디테일입니다.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card">
-    <div class="section-label">시공 가격표 (정상가 기준)</div>
-    <div class="tab-wrap">
-      <div class="tab active" onclick="switchTab('live')">거주중</div>
-      <div class="tab" onclick="switchTab('new')">입주예정</div>
-    </div>
+<div class="price-section">
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-title">시공 가격표</h2>
+  <p class="section-desc" style="font-size:13px;">정상가 기준입니다. 할인 코드 보유 시 견적 신청 페이지에서 적용하세요.</p>
 
-    <div class="table-wrap active" id="tab-live">
-      <table class="price-table">
-        <tr>
-          <th>시공 부위</th>
-          <th>정상가</th>
-        </tr>
-        <tr><td>현관</td><td>250,000원</td></tr>
-        <tr><td>화장실 1곳 바닥</td><td>500,000원</td></tr>
-        <tr><td>화장실 1곳 벽면 전체</td><td>1,000,000원</td></tr>
-        <tr><td>세탁실</td><td>350,000원</td></tr>
-        <tr><td>베란다</td><td>350,000원</td></tr>
-        <tr><td>거실 80-100</td><td>1,200,000원</td></tr>
-        <tr><td>거실 100 이상</td><td>1,400,000원</td></tr>
-      </table>
-      <div class="price-note">* 타일 300각 기준 · 별도 사이즈 추가 문의<br>* 스타라이크, 푸가리테 추가 문의</div>
-    </div>
-
-    <div class="table-wrap" id="tab-new">
-      <table class="price-table">
-        <tr>
-          <th>시공 부위</th>
-          <th>정상가</th>
-        </tr>
-        <tr><td>현관</td><td>200,000원</td></tr>
-        <tr><td>화장실 1곳 바닥</td><td>400,000원</td></tr>
-        <tr><td>화장실 1곳 벽면 전체</td><td>800,000원</td></tr>
-        <tr><td>세탁실</td><td>300,000원</td></tr>
-        <tr><td>베란다</td><td>300,000원</td></tr>
-        <tr><td>거실 80-100</td><td>1,200,000원</td></tr>
-        <tr><td>거실 100 이상</td><td>1,400,000원</td></tr>
-      </table>
-      <div class="price-note">* 타일 300각 기준 · 별도 사이즈 추가 문의<br>* 스타라이크, 푸가리테 추가 문의</div>
-    </div>
+  <div class="tab-wrap">
+    <button class="tab active" onclick="switchTab(this,'live')">거주중</button>
+    <button class="tab" onclick="switchTab(this,'new')">입주예정</button>
   </div>
 
+  <div class="table-wrap active" id="tab-live">
+    <table class="price-table">
+      <tr><td>현관</td><td>250,000원</td></tr>
+      <tr><td>화장실 1곳 바닥</td><td>500,000원</td></tr>
+      <tr><td>화장실 1곳 벽면 전체</td><td>1,000,000원</td></tr>
+      <tr><td>세탁실</td><td>350,000원</td></tr>
+      <tr><td>베란다</td><td>350,000원</td></tr>
+      <tr><td>거실 80-100평</td><td>1,200,000원</td></tr>
+      <tr><td>거실 100평 이상</td><td>1,400,000원</td></tr>
+    </table>
+    <div class="price-note">타일 300각 기준 · 별도 사이즈 추가 문의<br>스타라이크, 푸가리테 추가 문의</div>
+  </div>
+
+  <div class="table-wrap" id="tab-new">
+    <table class="price-table">
+      <tr><td>현관</td><td>200,000원</td></tr>
+      <tr><td>화장실 1곳 바닥</td><td>400,000원</td></tr>
+      <tr><td>화장실 1곳 벽면 전체</td><td>800,000원</td></tr>
+      <tr><td>세탁실</td><td>300,000원</td></tr>
+      <tr><td>베란다</td><td>300,000원</td></tr>
+      <tr><td>거실 80-100평</td><td>1,200,000원</td></tr>
+      <tr><td>거실 100평 이상</td><td>1,400,000원</td></tr>
+    </table>
+    <div class="price-note">타일 300각 기준 · 별도 사이즈 추가 문의<br>스타라이크, 푸가리테 추가 문의</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="review-section">
+  <div class="review-inner">
+    <div class="section-eyebrow">Reviews</div>
+    <h2 class="section-title">고객 후기</h2>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"입주 전에 시공했는데 새집 분위기가 완전히 달라졌어요. 타일 사이가 이렇게 깔끔할 수 있다는 게 신기할 정도였어요. 친정엄마도 보고 너무 좋다고 하셨어요."</div>
+        <div class="review-meta">마포구 · 마포래미안푸르지오 · 화장실 2곳 + 현관</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"거주중 시공이라 걱정했는데 생각보다 깔끔하게 마무리해주셨어요. 기존 줄눈이 검게 변해있었는데 시공 후에 화장실이 완전 다른 공간이 된 것 같아서 너무 만족합니다."</div>
+        <div class="review-meta">성동구 · 옥수파크힐스 · 화장실 바닥 + 베란다</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"인테리어 마무리로 줄눈 시공했는데 이게 이렇게 차이가 날 줄 몰랐어요. 타일이 더 비싸 보이는 느낌? 디테일이 살아있으니까 전체 분위기가 올라가더라고요."</div>
+        <div class="review-meta">강동구 · 고덕그라시움 · 거실 + 화장실 전체</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="fixed-cta">
@@ -138,10 +187,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 </div>
 
 <script>
-function switchTab(type) {
+function switchTab(el, type) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.table-wrap').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  el.classList.add('active');
   document.getElementById('tab-' + type).classList.add('active');
 }
 </script>
