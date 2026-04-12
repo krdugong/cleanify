@@ -190,7 +190,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7RbwG87KkxTRL7U6wIw0KLxWcE6qjEaFghMk9ii3vPX9K131fzKpgfMP0j4YTpqdncw/exec";
 const PROMO_CODES = ['2026', 'SUMMER', 'BLOG2604', 'CAFE2604'];
-const PROMO_DISCOUNT = 100000;
+const PROMO_DISCOUNT = 120000;
 
 const PRICES_LIVE = {
   '현관': 300000, '화장실 바닥': 600000, '화장실 벽면': 1200000,
@@ -254,7 +254,7 @@ function applyPromo() {
     promoApplied = true;
     promoCode = input;
     msg.className = 'cf-promo-msg cf-promo-ok';
-    msg.textContent = '코드가 적용됐습니다. 100,000원 할인!';
+    msg.textContent = '코드가 적용됐습니다. 구역당 120,000원 할인!';
     calcPrice();
   } else {
     promoApplied = false;
