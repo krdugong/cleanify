@@ -193,12 +193,12 @@ const PROMO_CODES = ['2026', 'SUMMER', 'BLOG2604', 'CAFE2604'];
 const PROMO_DISCOUNT = 100000;
 
 const PRICES_LIVE = {
-  '현관': 250000, '화장실 바닥': 500000, '화장실 벽면': 1000000,
-  '세탁실': 350000, '베란다': 350000, '거실': 1200000
+  '현관': 300000, '화장실 바닥': 600000, '화장실 벽면': 1200000,
+  '세탁실': 420000, '베란다': 420000, '거실': 1440000
 };
 const PRICES_NEW = {
-  '현관': 200000, '화장실 바닥': 400000, '화장실 벽면': 800000,
-  '세탁실': 300000, '베란다': 300000, '거실': 1200000
+  '현관': 240000, '화장실 바닥': 480000, '화장실 벽면': 960000,
+  '세탁실': 360000, '베란다': 360000, '거실': 1440000
 };
 
 let promoApplied = false;
@@ -236,8 +236,9 @@ function calcPrice() {
   });
 
   if (promoApplied) {
-    total -= PROMO_DISCOUNT;
-    details.push('할인코드 적용 -' + fmt(PROMO_DISCOUNT));
+    const discount = PROMO_DISCOUNT * areas.length;
+    total -= discount;
+    details.push('할인코드 적용 -' + fmt(discount));
   }
 
   document.getElementById('price-amount').textContent = fmt(total);
