@@ -343,7 +343,7 @@ function togglePrivacy() {
   arrow.classList.toggle('open', !isOpen);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWr0m0vAQbz8QLfSMO3ctDObbZLGuxJieUT68TKBPfCNE8lJr96oepPxQUC019W1mcfQ/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUw2H1vox_owyJ-zCj7cAicHnceLiPeOG1Wf71eEK79wjL4iMfH7zhd_MnPI9FKbSDPQ/exec";
 
 function submitForm() {
   const name   = document.getElementById('name').value.trim();
@@ -372,9 +372,7 @@ function submitForm() {
     special: specials.length ? specials.join(', ') : '해당없음',
     time, memo,
     date: dateVal || '협의',
-    gateCode: sessionStorage.getItem('gateCode') || '',
     promoCode: promoApplied ? promoInputVal : '',
-    promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
     price: document.getElementById('price-amount').textContent,
     priceDetail: document.getElementById('price-detail').textContent
   });
