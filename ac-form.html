@@ -341,7 +341,7 @@ function togglePrivacy() {
   arrow.classList.toggle('open', !isOpen);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7RbwG87KkxTRL7U6wIw0KLxWcE6qjEaFghMk9ii3vPX9K131fzKpgfMP0j4YTpqdncw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWr0m0vAQbz8QLfSMO3ctDObbZLGuxJieUT68TKBPfCNE8lJr96oepPxQUC019W1mcfQ/exec";
 
 function submitForm() {
   const name   = document.getElementById('name').value.trim();
@@ -363,30 +363,38 @@ function submitForm() {
   btn.textContent = '신청 중...';
   btn.disabled = true;
 
+  const payload = JSON.stringify({
+    name, phone, region,
+    type: type.textContent,
+    count: String(count),
+    special: specials.length ? specials.join(', ') : '해당없음',
+    time, memo,
+    date: dateVal || '협의',
+    gateCode: sessionStorage.getItem('gateCode') || '',
+    promoCode: promoApplied ? input : '',
+    promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
+    price: document.getElementById('price-amount').textContent,
+    priceDetail: document.getElementById('price-detail').textContent
+  });
+
+  const done = () => {
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-wrap').style.display = 'block';
+  };
+
+  const timer = setTimeout(done, 5000);
+
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name, phone, region,
-      type: type.textContent,
-      count: String(count),
-      special: specials.length ? specials.join(', ') : '해당없음',
-      time, memo,
-      date: dateVal || '협의',
-      gateCode: sessionStorage.getItem('gateCode') || '',
-      promoCode: promoApplied ? input : '',
-      promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
-      price: document.getElementById('price-amount').textContent,
-      priceDetail: document.getElementById('price-detail').textContent
-    })
+    body: payload
   }).then(() => {
-    document.getElementById('form-wrap').style.display = 'none';
-    document.getElementById('success-wrap').style.display = 'block';
+    clearTimeout(timer);
+    done();
   }).catch(() => {
-    alert('오류가 발생했습니다. 다시 시도해주세요.');
-    btn.textContent = '무료 견적 신청하기';
-    btn.disabled = false;
+    clearTimeout(timer);
+    done();
   });
 }
 </script>
