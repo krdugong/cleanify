@@ -244,10 +244,12 @@ function changeCount(delta) {
 const PROMO_CODES = ['2026', 'SUMMER', 'BLOG2604', 'CAFE2604'];
 const PROMO_DISCOUNT = 10000;
 let promoApplied = false;
+let promoInputVal = '';
 
 function applyPromo() {
   const input = document.getElementById('promo-input').value.trim().toUpperCase();
   const PROMO_CODES_UPPER = PROMO_CODES.map(c => c.toUpperCase());
+  promoInputVal = input;
   const msg = document.getElementById('promo-msg');
   const typeEl = document.querySelector('#type-group .cf-chip.active');
 
@@ -371,7 +373,7 @@ function submitForm() {
     time, memo,
     date: dateVal || '협의',
     gateCode: sessionStorage.getItem('gateCode') || '',
-    promoCode: promoApplied ? input : '',
+    promoCode: promoApplied ? promoInputVal : '',
     promoDiscount: promoApplied ? '대당 10,000원 할인' : '',
     price: document.getElementById('price-amount').textContent,
     priceDetail: document.getElementById('price-detail').textContent
