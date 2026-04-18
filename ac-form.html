@@ -123,7 +123,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-seri
       <div class="cf-price-amount" id="price-amount">0원</div>
       <div class="cf-price-detail" id="price-detail"></div>
     </div>
-    <div class="cf-promo" id="promo-wrap" style="display:none;">
+    <div class="cf-promo" id="promo-wrap">
       <div class="cf-promo-row">
         <input class="cf-promo-input" type="text" id="promo-input" placeholder="프로모션 코드 입력">
         <button class="cf-promo-btn" onclick="applyPromo()">적용</button>
@@ -284,7 +284,7 @@ const PRICES = {
 };
 const SPECIAL_FIXED = ['미켈란젤로', '갤러리'];
 const SPECIAL_FIXED_PRICE = 250000;
-const SPECIAL_ADD = 20000;
+const SPECIAL_ADD = 30000;
 
 function calcPrice() {
   const typeEl = document.querySelector('#type-group .cf-chip.active');
@@ -321,7 +321,6 @@ function calcPrice() {
   document.getElementById('price-amount').textContent = fmt(total);
   document.getElementById('price-detail').textContent = detail;
   document.getElementById('price-box').style.display = 'block';
-  document.getElementById('promo-wrap').style.display = 'block';
 }
 
 function toggleChip(el, group) {
