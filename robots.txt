@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /form.html
+
+Sitemap: https://cleanify.kr/sitemap.xml

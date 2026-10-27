@@ -1,0 +1,7 @@
+/* index / ac / gr 에 들어가는 지역 링크 */
+.area-links { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+.area-links h2 { font-size: 16px; font-weight: 700; margin-bottom: 0.75rem; }
+.area-links-group { font-size: 13px; line-height: 2; color: #555; margin-bottom: 0.5rem; }
+.area-links-group strong { margin-right: 6px; color: #111; }
+.area-links-group a { color: #777; text-decoration: none; margin-right: 8px; white-space: nowrap; }
+.area-links-group a:hover { color: #0F6E56; }
