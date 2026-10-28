@@ -8,6 +8,10 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://cleanify.kr';
 const TODAY = new Date().toISOString().slice(0, 10);
+// 구글 애널리틱스 측정 ID (비워두면 GA 코드를 넣지 않음)
+const GA_ID = process.env.GA_ID || 'G-H2NSJLMKT4';
+const gaTag = () => GA_ID ? `<!-- GA --><script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script><!-- /GA -->` : '';
 
 // ── 지역 ──────────────────────────────────────────────
 // prefix: 페이지 제목에 붙는 지역명, note: 페이지마다 다른 소개 문장(선택)
@@ -130,6 +134,7 @@ function head({ title, desc, path, extra = '' }) {
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
+${gaTag()}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
@@ -319,9 +324,12 @@ Sitemap: ${SITE}/sitemap.xml
 
 // 링크 묶음을 index/ac/gr 에 끼워 넣습니다 (<!-- AREA_LINKS:서비스 --> 표시 사이)
 import { readFileSync } from 'node:fs';
-for (const file of ['index.html', 'ac.html', 'gr.html']) {
+for (const file of ['index.html', 'ac.html', 'gr.html', 'ac-form.html', 'gr-form.html', 'form.html']) {
   const p = join(ROOT, file);
   let html = readFileSync(p, 'utf8');
+  // GA 코드: 기존 것은 지우고 <head> 바로 뒤에 다시 넣기
+  html = html.replace(/\n?<!-- GA -->[\s\S]*?<!-- \/GA -->/, '');
+  if (GA_ID) html = html.replace('<head>', '<head>\n' + gaTag());
   for (const svcKey of Object.keys(SERVICES)) {
     const re = new RegExp(`(<!-- AREA_LINKS:${svcKey} -->)[\\s\\S]*?(<!-- /AREA_LINKS -->)`);
     html = html.replace(re, `$1\n${areaLinksHtml(svcKey)}\n$2`);
