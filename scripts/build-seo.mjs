@@ -12,6 +12,26 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const GA_ID = process.env.GA_ID || 'G-H2NSJLMKT4';
 const gaTag = () => GA_ID ? `<!-- GA --><script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script><!-- /GA -->` : '';
+// 네이버 애널리틱스 사이트 ID (비워두면 넣지 않음). 네이버 안내대로 </body> 바로 앞에 넣습니다.
+const NA_ID = process.env.NA_ID ?? '1bcd6dbbf7ecca0';
+const naTag = () => NA_ID ? `<!-- NA --><script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "${NA_ID}";
+if(window.wcs) {
+  wcs_do();
+}
+</script><!-- /NA -->` : '';
+const withNa = html => {
+  html = html.replace(/\n?<!-- NA -->[\s\S]*?<!-- \/NA -->/, '');
+  return NA_ID ? html.replace('</body>', naTag() + '\n</body>') : html;
+};
+// 파비콘 (파일은 사이트 루트에 있음)
+const ICON_LINKS = `<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">`;
+const withIcons = html => html.replace(/(<link rel="(?:icon|apple-touch-icon)"(?:[^>"]|"[^"]*")*>\n?)+/, ICON_LINKS + '\n');
 
 // ── 지역 ──────────────────────────────────────────────
 // prefix: 페이지 제목에 붙는 지역명, note: 페이지마다 다른 소개 문장(선택)
@@ -150,7 +170,7 @@ ${gaTag()}
 <meta property="og:image" content="${SITE}/assets/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
+${ICON_LINKS}
 <link rel="stylesheet" href="/assets/seo.css?v=${TODAY.replace(/-/g, '')}">
 ${extra}
 </head>
@@ -287,7 +307,7 @@ export function areaLinksHtml(svcKey) {
 const write = (rel, content) => {
   const file = join(ROOT, rel);
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, content);
+  writeFileSync(file, rel.endsWith('.html') ? withNa(content) : content);
 };
 
 for (const svcKey of Object.keys(SERVICES)) {
@@ -330,6 +350,7 @@ for (const file of ['index.html', 'ac.html', 'gr.html', 'ac-form.html', 'gr-form
   // GA 코드: 기존 것은 지우고 <head> 바로 뒤에 다시 넣기
   html = html.replace(/\n?<!-- GA -->[\s\S]*?<!-- \/GA -->/, '');
   if (GA_ID) html = html.replace('<head>', '<head>\n' + gaTag());
+  html = withIcons(withNa(html));
   for (const svcKey of Object.keys(SERVICES)) {
     const re = new RegExp(`(<!-- AREA_LINKS:${svcKey} -->)[\\s\\S]*?(<!-- /AREA_LINKS -->)`);
     html = html.replace(re, `$1\n${areaLinksHtml(svcKey)}\n$2`);
